@@ -8,9 +8,14 @@ def envoyer_xml(request):
     if request.method == 'POST':
         xml_code = request.POST.get('xml_code')
 
-        # Vérifiez si l'action est "envoyer"
+
+        import requests
+
         if request.POST.get('action') == 'envoyer':
-            headers = {'Content-Type': 'text/xml'}  # Définissez l'en-tête Content-Type
+            headers = {
+                'Content-Type': 'text/xml',
+                'Authorization': ''
+            }
             response = requests.post(api_url, data=xml_code, headers=headers)
 
             if response.status_code == 200:
